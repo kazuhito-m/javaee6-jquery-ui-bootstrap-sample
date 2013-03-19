@@ -1,61 +1,130 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hm.orz.sumpic.sample.jjbs.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * 勉強会クラス。
  *
- * @author kazuhito
+ * @author M11131H
  */
 @Entity
-@NamedQuery(name = "findAllStudyMeeting", query = "select s from StudyMeeting s")
+@Table(name = "STUDY_MEETING")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "StudyMeeting.findAll", query = "SELECT s FROM StudyMeeting s"),
+    @NamedQuery(name = "StudyMeeting.findById", query = "SELECT s FROM StudyMeeting s WHERE s.id = :id"),
+    @NamedQuery(name = "StudyMeeting.findByTitle", query = "SELECT s FROM StudyMeeting s WHERE s.title = :title"),
+    @NamedQuery(name = "StudyMeeting.findBySubTitle", query = "SELECT s FROM StudyMeeting s WHERE s.subTitle = :subTitle"),
+    @NamedQuery(name = "StudyMeeting.findByContext", query = "SELECT s FROM StudyMeeting s WHERE s.context = :context"),
+    @NamedQuery(name = "StudyMeeting.findByExhibitionDate", query = "SELECT s FROM StudyMeeting s WHERE s.exhibitionDate = :exhibitionDate"),
+    @NamedQuery(name = "StudyMeeting.findByParticipantCount", query = "SELECT s FROM StudyMeeting s WHERE s.participantCount = :participantCount")})
 public class StudyMeeting implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    /**
-     * 勉強会タイトル
-     */
+    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
+    private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 128)
     @Column(nullable = false, length = 128)
     private String title;
-    /**
-     * サブタイトル
-     */
-    @Column(nullable = false, length = 128)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 128)
+    @Column(name = "SUB_TITLE", nullable = false, length = 128)
     private String subTitle;
-    /**
-     * 内容
-     */
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 1024)
     @Column(nullable = false, length = 1024)
     private String context;
-    /**
-     * 開催日
-     */
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "EXHIBITION_DATE", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date exhibitionDate;
-    /**
-     * 参加者数
-     */
-    @Column(nullable = false)
-    private Long participantCount;
+    @Column(name = "PARTICIPANT_COUNT")
+    private Integer participantCount;
 
-    public Long getId() {
+    public StudyMeeting() {
+    }
+
+    public StudyMeeting(Integer id) {
+        this.id = id;
+    }
+
+    public StudyMeeting(Integer id, String title, String subTitle, String context, Date exhibitionDate) {
+        this.id = id;
+        this.title = title;
+        this.subTitle = subTitle;
+        this.context = context;
+        this.exhibitionDate = exhibitionDate;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
+    }
+
+    public Date getExhibitionDate() {
+        return exhibitionDate;
+    }
+
+    public void setExhibitionDate(Date exhibitionDate) {
+        this.exhibitionDate = exhibitionDate;
+    }
+
+    public Integer getParticipantCount() {
+        return participantCount;
+    }
+
+    public void setParticipantCount(Integer participantCount) {
+        this.participantCount = participantCount;
     }
 
     @Override
@@ -80,76 +149,7 @@ public class StudyMeeting implements Serializable {
 
     @Override
     public String toString() {
-        return "tabok.kansai.samples.testing.entity.StudyMeeting[ id=" + id + " ]";
+        return "hm.orz.sumpic.sample.jjbs.entity.StudyMeeting[ id=" + id + " ]";
     }
-
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * @return the subTitle
-     */
-    public String getSubTitle() {
-        return subTitle;
-    }
-
-    /**
-     * @param subTitle the subTitle to set
-     */
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
-    }
-
-    /**
-     * @return the context
-     */
-    public String getContext() {
-        return context;
-    }
-
-    /**
-     * @param context the context to set
-     */
-    public void setContext(String context) {
-        this.context = context;
-    }
-
-    /**
-     * @return the exhibitionDate
-     */
-    public Date getExhibitionDate() {
-        return exhibitionDate;
-    }
-
-    /**
-     * @param exhibitionDate the exhibitionDate to set
-     */
-    public void setExhibitionDate(Date exhibitionDate) {
-        this.exhibitionDate = exhibitionDate;
-    }
-
-    /**
-     * @return the participantCount
-     */
-    public Long getParticipantCount() {
-        return participantCount;
-    }
-
-    /**
-     * @param participantCount the participantCount to set
-     */
-    public void setParticipantCount(Long participantCount) {
-        this.participantCount = participantCount;
-    }
+    
 }

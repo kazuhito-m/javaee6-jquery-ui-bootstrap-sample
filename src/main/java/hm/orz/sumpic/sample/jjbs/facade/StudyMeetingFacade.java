@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hm.orz.sumpic.sample.jjbs.facade;
 
 import hm.orz.sumpic.sample.jjbs.entity.StudyMeeting;
@@ -7,11 +11,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author kazuhito
+ * @author M11131H
  */
 @Stateless
 public class StudyMeetingFacade extends AbstractFacade<StudyMeeting> {
-    @PersistenceContext(unitName = "javaee6-sample")
+    @PersistenceContext(unitName = "jjubs-sample")
     private EntityManager em;
 
     @Override

@@ -1,53 +1,132 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hm.orz.sumpic.sample.jjbs.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * 勉強会集計クラス。
- * @author kazuhito
+ *
+ * @author M11131H
  */
 @Entity
+@Table(name = "TOTAL_OF_STUDY_MEETING")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "TotalOfStudyMeeting.findAll", query = "SELECT t FROM TotalOfStudyMeeting t"),
+    @NamedQuery(name = "TotalOfStudyMeeting.findById", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.id = :id"),
+    @NamedQuery(name = "TotalOfStudyMeeting.findByTitle", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.title = :title"),
+    @NamedQuery(name = "TotalOfStudyMeeting.findByFromDate", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.fromDate = :fromDate"),
+    @NamedQuery(name = "TotalOfStudyMeeting.findByToDate", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.toDate = :toDate"),
+    @NamedQuery(name = "TotalOfStudyMeeting.findByTimes", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.times = :times"),
+    @NamedQuery(name = "TotalOfStudyMeeting.findByTotalParticipantCount", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.totalParticipantCount = :totalParticipantCount")})
 public class TotalOfStudyMeeting implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-        /** 勉強会タイトル */
+    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
+    private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 128)
     @Column(nullable = false, length = 128)
     private String title;
-
-    /** 集計開始日 */
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "FROM_DATE", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date fromDate;
-
-    /** 集計開始日 */
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "TO_DATE", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date toDate;
-
-    /** 開催回数 */
+    @Basic(optional = false)
+    @NotNull
     @Column(nullable = false)
-    private Long times;
+    private int times;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "TOTAL_PARTICIPANT_COUNT", nullable = false)
+    private int totalParticipantCount;
 
-    /** 総参加者数 */
-    @Column(nullable = false)
-    private Long totalParticipantCount;
+    public TotalOfStudyMeeting() {
+    }
 
-    public Long getId() {
+    public TotalOfStudyMeeting(Integer id) {
+        this.id = id;
+    }
+
+    public TotalOfStudyMeeting(Integer id, String title, Date fromDate, Date toDate, int times, int totalParticipantCount) {
+        this.id = id;
+        this.title = title;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.times = times;
+        this.totalParticipantCount = totalParticipantCount;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
+
+    public int getTimes() {
+        return times;
+    }
+
+    public void setTimes(int times) {
+        this.times = times;
+    }
+
+    public int getTotalParticipantCount() {
+        return totalParticipantCount;
+    }
+
+    public void setTotalParticipantCount(int totalParticipantCount) {
+        this.totalParticipantCount = totalParticipantCount;
     }
 
     @Override
@@ -72,77 +151,7 @@ public class TotalOfStudyMeeting implements Serializable {
 
     @Override
     public String toString() {
-        return "tabok.kansai.samples.testing.entity.TotalOfStudyMeeting[ id=" + id + " ]";
-    }
-
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * @return the fromDate
-     */
-    public Date getFromDate() {
-        return fromDate;
-    }
-
-    /**
-     * @param fromDate the fromDate to set
-     */
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
-    }
-
-    /**
-     * @return the toDate
-     */
-    public Date getToDate() {
-        return toDate;
-    }
-
-    /**
-     * @param toDate the toDate to set
-     */
-    public void setToDate(Date toDate) {
-        this.toDate = toDate;
-    }
-
-    /**
-     * @return the times
-     */
-    public Long getTimes() {
-        return times;
-    }
-
-    /**
-     * @param times the times to set
-     */
-    public void setTimes(Long times) {
-        this.times = times;
-    }
-
-    /**
-     * @return the totalParticipantCount
-     */
-    public Long getTotalParticipantCount() {
-        return totalParticipantCount;
-    }
-
-    /**
-     * @param totalParticipantCount the totalParticipantCount to set
-     */
-    public void setTotalParticipantCount(Long totalParticipantCount) {
-        this.totalParticipantCount = totalParticipantCount;
+        return "hm.orz.sumpic.sample.jjbs.entity.TotalOfStudyMeeting[ id=" + id + " ]";
     }
     
 }
