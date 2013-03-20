@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class TotalOfStudyMeetingFacade extends AbstractFacade<TotalOfStudyMeeting> {
-    @PersistenceContext(unitName = "jjubs-sample")
+    @PersistenceContext(unitName = "sample-javadb")
     private EntityManager em;
 
     @Override

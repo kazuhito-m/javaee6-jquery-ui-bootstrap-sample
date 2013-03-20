@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateStudyMeetingTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateStudyMeetingLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{studyMeetingController.selected.title}" title="#{bundle.CreateStudyMeetingTitle_title}" required="true" requiredMessage="#{bundle.CreateStudyMeetingRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.CreateStudyMeetingLabel_subTitle}" for="subTitle" />
+                    <h:inputText id="subTitle" value="#{studyMeetingController.selected.subTitle}" title="#{bundle.CreateStudyMeetingTitle_subTitle}" required="true" requiredMessage="#{bundle.CreateStudyMeetingRequiredMessage_subTitle}"/>
+                    <h:outputLabel value="#{bundle.CreateStudyMeetingLabel_context}" for="context" />
+                    <h:inputText id="context" value="#{studyMeetingController.selected.context}" title="#{bundle.CreateStudyMeetingTitle_context}" required="true" requiredMessage="#{bundle.CreateStudyMeetingRequiredMessage_context}"/>
+                    <h:outputLabel value="#{bundle.CreateStudyMeetingLabel_exhibitionDate}" for="exhibitionDate" />
+                    <h:inputText id="exhibitionDate" value="#{studyMeetingController.selected.exhibitionDate}" title="#{bundle.CreateStudyMeetingTitle_exhibitionDate}" required="true" requiredMessage="#{bundle.CreateStudyMeetingRequiredMessage_exhibitionDate}">
+                        <f:convertDateTime pattern="yyyy/MM/dd" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateStudyMeetingLabel_participantCount}" for="participantCount" />
+                    <h:inputText id="participantCount" value="#{studyMeetingController.selected.participantCount}" title="#{bundle.CreateStudyMeetingTitle_participantCount}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{studyMeetingController.create}" value="#{bundle.CreateStudyMeetingSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{studyMeetingController.prepareList}" value="#{bundle.CreateStudyMeetingShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateStudyMeetingIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

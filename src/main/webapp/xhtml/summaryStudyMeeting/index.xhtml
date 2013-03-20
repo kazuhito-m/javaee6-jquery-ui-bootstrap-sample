@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <div class="container">
+            <h:form>
+                <table>
+                    <tr>
+                        <th><h:outputLabel value="対象勉強会名:"/></th>
+                        <td><h:inputText value="#{ssm.total.title}"/></td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="集計開始日:"/></th>
+                        <td>
+                            <h:inputText value="#{ssm.total.fromDate}">
+                                <f:convertDateTime pattern="yyyy/MM/dd" />
+                            </h:inputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="集計終了日:"/></th>
+                        <td>
+                            <h:inputText value="#{ssm.total.toDate}">
+                                <f:convertDateTime pattern="yyyy/MM/dd" />
+                            </h:inputText>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <h:commandButton action="#{ssm.summaryAndStore}" value="集計"/>
+                        </th>
+                    </tr>
+                </table>
+            </h:form>
+
+            <h:dataTable id="table" border="1" value="#{ssm.totalOfStudyMeetings}" var="meet">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText  value="タイトル"/>
+                    </f:facet>
+                    <h:outputText id="title" value="#{meet.title}"/>
+                </h:column>            
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText  value="集計開始日"/>
+                    </f:facet>
+                    <h:outputText id="fromDate" value="#{meet.fromDate}"/>
+                </h:column>            
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText  value="集計終了日"/>
+                    </f:facet>
+                    <h:outputText id="toDate" value="#{meet.toDate}"/>
+                </h:column>            
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText  value="開催回数"/>
+                    </f:facet>
+                    <h:outputText id="times" value="#{meet.times}"/>
+                </h:column>            
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText  value="のべ参加人数"/>
+                    </f:facet>
+                    <h:outputText id="totalParticipantCount" value="#{meet.totalParticipantCount}"/>
+                </h:column>            
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText  value="集計日"/>
+                    </f:facet>
+                    <h:outputText id="summaryDate" value="#{meet.summaryDate}"/>
+                </h:column>            
+            </h:dataTable>
+        </div>
+    </ui:define>
+</ui:composition>

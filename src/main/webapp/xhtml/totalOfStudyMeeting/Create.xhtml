@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTotalOfStudyMeetingTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTotalOfStudyMeetingLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{totalOfStudyMeetingController.selected.title}" title="#{bundle.CreateTotalOfStudyMeetingTitle_title}" required="true" requiredMessage="#{bundle.CreateTotalOfStudyMeetingRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.CreateTotalOfStudyMeetingLabel_fromDate}" for="fromDate" />
+                    <h:inputText id="fromDate" value="#{totalOfStudyMeetingController.selected.fromDate}" title="#{bundle.CreateTotalOfStudyMeetingTitle_fromDate}" required="true" requiredMessage="#{bundle.CreateTotalOfStudyMeetingRequiredMessage_fromDate}">
+                        <f:convertDateTime pattern="yyyy/MM/dd" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTotalOfStudyMeetingLabel_toDate}" for="toDate" />
+                    <h:inputText id="toDate" value="#{totalOfStudyMeetingController.selected.toDate}" title="#{bundle.CreateTotalOfStudyMeetingTitle_toDate}" required="true" requiredMessage="#{bundle.CreateTotalOfStudyMeetingRequiredMessage_toDate}">
+                        <f:convertDateTime pattern="yyyy/MM/dd" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTotalOfStudyMeetingLabel_times}" for="times" />
+                    <h:inputText id="times" value="#{totalOfStudyMeetingController.selected.times}" title="#{bundle.CreateTotalOfStudyMeetingTitle_times}" required="true" requiredMessage="#{bundle.CreateTotalOfStudyMeetingRequiredMessage_times}"/>
+                    <h:outputLabel value="#{bundle.CreateTotalOfStudyMeetingLabel_totalParticipantCount}" for="totalParticipantCount" />
+                    <h:inputText id="totalParticipantCount" value="#{totalOfStudyMeetingController.selected.totalParticipantCount}" title="#{bundle.CreateTotalOfStudyMeetingTitle_totalParticipantCount}" required="true" requiredMessage="#{bundle.CreateTotalOfStudyMeetingRequiredMessage_totalParticipantCount}"/>
+                    <h:outputLabel value="#{bundle.CreateTotalOfStudyMeetingLabel_summaryDate}" for="summaryDate" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{totalOfStudyMeetingController.create}" value="#{bundle.CreateTotalOfStudyMeetingSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{totalOfStudyMeetingController.prepareList}" value="#{bundle.CreateTotalOfStudyMeetingShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTotalOfStudyMeetingIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

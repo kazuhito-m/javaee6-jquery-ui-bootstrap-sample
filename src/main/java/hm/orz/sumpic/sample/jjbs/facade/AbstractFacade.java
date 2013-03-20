@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hm.orz.sumpic.sample.jjbs.facade;
 
 import java.util.List;

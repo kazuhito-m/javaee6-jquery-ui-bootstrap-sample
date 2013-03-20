@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package hm.orz.sumpic.sample.jjbs.entity;
 
 import java.io.Serializable;
@@ -9,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -37,28 +35,29 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class StudyMeeting implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Basic(optional = false)
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "ID")
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
-    @Column(nullable = false, length = 128)
+    @Column(name = "TITLE")
     private String title;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
-    @Column(name = "SUB_TITLE", nullable = false, length = 128)
+    @Column(name = "SUB_TITLE")
     private String subTitle;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 1024)
-    @Column(nullable = false, length = 1024)
+    @Column(name = "CONTEXT")
     private String context;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "EXHIBITION_DATE", nullable = false)
+    @Column(name = "EXHIBITION_DATE")
     @Temporal(TemporalType.DATE)
     private Date exhibitionDate;
     @Column(name = "PARTICIPANT_COUNT")

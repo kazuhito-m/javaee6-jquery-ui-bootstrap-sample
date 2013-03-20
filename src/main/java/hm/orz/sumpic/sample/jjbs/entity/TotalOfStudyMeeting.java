@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package hm.orz.sumpic.sample.jjbs.entity;
 
 import java.io.Serializable;
@@ -9,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,37 +31,44 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TotalOfStudyMeeting.findByFromDate", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.fromDate = :fromDate"),
     @NamedQuery(name = "TotalOfStudyMeeting.findByToDate", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.toDate = :toDate"),
     @NamedQuery(name = "TotalOfStudyMeeting.findByTimes", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.times = :times"),
-    @NamedQuery(name = "TotalOfStudyMeeting.findByTotalParticipantCount", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.totalParticipantCount = :totalParticipantCount")})
+    @NamedQuery(name = "TotalOfStudyMeeting.findByTotalParticipantCount", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.totalParticipantCount = :totalParticipantCount"),
+    @NamedQuery(name = "TotalOfStudyMeeting.findBySummaryDate", query = "SELECT t FROM TotalOfStudyMeeting t WHERE t.summaryDate = :summaryDate")})
 public class TotalOfStudyMeeting implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Basic(optional = false)
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "ID")
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
-    @Column(nullable = false, length = 128)
+    @Column(name = "TITLE")
     private String title;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "FROM_DATE", nullable = false)
+    @Column(name = "FROM_DATE")
     @Temporal(TemporalType.DATE)
     private Date fromDate;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "TO_DATE", nullable = false)
+    @Column(name = "TO_DATE")
     @Temporal(TemporalType.DATE)
     private Date toDate;
     @Basic(optional = false)
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "TIMES")
     private int times;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "TOTAL_PARTICIPANT_COUNT", nullable = false)
+    @Column(name = "TOTAL_PARTICIPANT_COUNT")
     private int totalParticipantCount;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "SUMMARY_DATE")
+    @Temporal(TemporalType.DATE)
+    private Date summaryDate = new Date();
 
     public TotalOfStudyMeeting() {
     }
@@ -72,13 +77,14 @@ public class TotalOfStudyMeeting implements Serializable {
         this.id = id;
     }
 
-    public TotalOfStudyMeeting(Integer id, String title, Date fromDate, Date toDate, int times, int totalParticipantCount) {
+    public TotalOfStudyMeeting(Integer id, String title, Date fromDate, Date toDate, int times, int totalParticipantCount, Date summaryDate) {
         this.id = id;
         this.title = title;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.times = times;
         this.totalParticipantCount = totalParticipantCount;
+        this.summaryDate = summaryDate;
     }
 
     public Integer getId() {
@@ -127,6 +133,14 @@ public class TotalOfStudyMeeting implements Serializable {
 
     public void setTotalParticipantCount(int totalParticipantCount) {
         this.totalParticipantCount = totalParticipantCount;
+    }
+
+    public Date getSummaryDate() {
+        return summaryDate;
+    }
+
+    public void setSummaryDate(Date summaryDate) {
+        this.summaryDate = summaryDate;
     }
 
     @Override

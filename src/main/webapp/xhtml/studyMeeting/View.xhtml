@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewStudyMeetingTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewStudyMeetingLabel_id}"/>
+                    <h:outputText value="#{studyMeetingController.selected.id}" title="#{bundle.ViewStudyMeetingTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewStudyMeetingLabel_title}"/>
+                    <h:outputText value="#{studyMeetingController.selected.title}" title="#{bundle.ViewStudyMeetingTitle_title}"/>
+                    <h:outputText value="#{bundle.ViewStudyMeetingLabel_subTitle}"/>
+                    <h:outputText value="#{studyMeetingController.selected.subTitle}" title="#{bundle.ViewStudyMeetingTitle_subTitle}"/>
+                    <h:outputText value="#{bundle.ViewStudyMeetingLabel_context}"/>
+                    <h:outputText value="#{studyMeetingController.selected.context}" title="#{bundle.ViewStudyMeetingTitle_context}"/>
+                    <h:outputText value="#{bundle.ViewStudyMeetingLabel_exhibitionDate}"/>
+                    <h:outputText value="#{studyMeetingController.selected.exhibitionDate}" title="#{bundle.ViewStudyMeetingTitle_exhibitionDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewStudyMeetingLabel_participantCount}"/>
+                    <h:outputText value="#{studyMeetingController.selected.participantCount}" title="#{bundle.ViewStudyMeetingTitle_participantCount}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{studyMeetingController.destroyAndView}" value="#{bundle.ViewStudyMeetingDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewStudyMeetingEditLink}"/>
+                <br />
+                <h:commandLink action="#{studyMeetingController.prepareCreate}" value="#{bundle.ViewStudyMeetingCreateLink}" />
+                <br />
+                <h:commandLink action="#{studyMeetingController.prepareList}" value="#{bundle.ViewStudyMeetingShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewStudyMeetingIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

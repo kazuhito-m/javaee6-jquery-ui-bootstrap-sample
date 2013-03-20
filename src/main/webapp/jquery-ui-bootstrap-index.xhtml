@@ -1,89 +1,11 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <meta charset="utf-8" />
-        <title>jQuery UI Bootstrap のサンプルページ</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="A preview of the jQuery UI Bootstrap theme" />
-        <meta name="author" content="K.Miura(KSC)" />
-
-        <!-- Le styles -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link type="text/css" href="css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
-        <link type="text/css" href="assets/css/font-awesome.min.css" rel="stylesheet" />
-        <!--[if IE 7]>
-        <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
-        <![endif]-->
-        <!--[if lt IE 9]>
-        <link rel="stylesheet" type="text/css" href="css/custom-theme/jquery.ui.1.10.0.ie.css"/>
-        <![endif]-->
-        <link href="assets/css/docs.css" rel="stylesheet" />
-        <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet" />
-
-        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-
-        <!-- Le fav and touch icons -->
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png"/>
-        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png" />
-        <link rel="shortcut icon" href="assets/ico/favicon.png"/>
-
-    </h:head>
-
-    <h:body>
-
-        <!-- Navbar
-        ================================================== -->
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="brand" href="http://github.com/addyosmani/jquery-ui-bootstrap">jQuery UI Bootstrap</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active">
-                                <a href="./index.html">Home</a>
-                            </li>
-                            <li>
-                                <a href="./extra.html">Extra</a>
-                            </li>
-                            <li>
-                                <a href="http://github.com/addyosmani/jquery-ui-bootstrap/issues">Feedback/Issues</a>
-                            </li>
-                            <li>
-                                <a href="http://twitter.com/addyosmani">Contact</a>
-                            </li>
-                        </ul>
-                        <div id="twitter-share" class="pull-right">
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://addyosmani.github.com/jquery-ui-bootstrap/" data-text="A new jQuery UI Bootstrap theme" data-via="addyosmani" data-size="large">Tweet</a>
-                            <script>!function(d, s, id) {
-                                    var js, fjs = d.getElementsByTagName(s)[0];
-                                    if (!d.getElementById(id)) {
-                                        js = d.createElement(s);
-                                        js.id = id;
-                                        js.src = "//platform.twitter.com/widgets.js";
-                                        fjs.parentNode.insertBefore(js, fjs);
-                                    }
-                                }(document, "script", "twitter-wjs");</script>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Subhead
-        ================================================== -->
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+    <!-- Subhead ================================================== -->
         <header class="jumbotron subhead" id="overview">
             <div class="container">
                 <h1>jQuery UI Bootstrap</h1>
@@ -229,7 +151,6 @@ $("#menu-collapse").accordion({
                             <a href="#" id="dialog_link" class="ui-state-default ui-corner-all">
                                 <span class="ui-icon ui-icon-newwin"></span>Open Dialog
                             </a>
-                            &nbsp;
                             <a href="#" id="modal_link" class="ui-state-default ui-corner-all">
                                 <span class="ui-icon ui-icon-newwin"></span>
                                 Open Modal Dialog
@@ -891,30 +812,5 @@ $( "#tooltip" ).tooltip();
                 </div>
             </div>
         </div>
-
-        <!-- Footer
-        ================================================== -->
-        <footer class="footer">
-            <div class="container">
-                <p>
-                    jQuery UI Bootstrap &copy; Addy Osmani 2012 - 2013.
-                </p>
-                <p>
-                    Twitter Bootstrap &copy; Twitter 2012 - 2013
-                </p>
-                <ul class="footer-links">
-                    <li><a href="http://addyosmani.com/blog/">Blog</a></li>
-                    <li class="muted">&middot;</li>
-                    <li><a href="https://github.com/addyosmani/jquery-ui-bootstrap/issues?state=open">Issues</a></li>
-                </ul>
-            </div>
-        </footer>
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="assets/js/jquery-1.9.0.min.js" type="text/javascript"></script>
-        <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="assets/js/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>
-        <script src="assets/js/google-code-prettify/prettify.js" type="text/javascript"></script>
-        <script src="assets/js/docs.js" type="text/javascript"></script>
-        <script src="assets/js/demo.js" type="text/javascript"></script>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>

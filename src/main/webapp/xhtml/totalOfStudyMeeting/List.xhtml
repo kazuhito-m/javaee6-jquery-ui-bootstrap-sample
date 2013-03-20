@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTotalOfStudyMeetingTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTotalOfStudyMeetingEmpty}" rendered="#{totalOfStudyMeetingController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{totalOfStudyMeetingController.items.rowCount > 0}">
+                    <h:outputText value="#{totalOfStudyMeetingController.pagination.pageFirstItem + 1}..#{totalOfStudyMeetingController.pagination.pageLastItem + 1}/#{totalOfStudyMeetingController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{totalOfStudyMeetingController.previous}" value="#{bundle.Previous} #{totalOfStudyMeetingController.pagination.pageSize}" rendered="#{totalOfStudyMeetingController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{totalOfStudyMeetingController.next}" value="#{bundle.Next} #{totalOfStudyMeetingController.pagination.pageSize}" rendered="#{totalOfStudyMeetingController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{totalOfStudyMeetingController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTotalOfStudyMeetingTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTotalOfStudyMeetingTitle_title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.title}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTotalOfStudyMeetingTitle_fromDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fromDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTotalOfStudyMeetingTitle_toDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.toDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTotalOfStudyMeetingTitle_times}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.times}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTotalOfStudyMeetingTitle_totalParticipantCount}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalParticipantCount}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTotalOfStudyMeetingTitle_summaryDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.summaryDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{totalOfStudyMeetingController.prepareView}" value="#{bundle.ListTotalOfStudyMeetingViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{totalOfStudyMeetingController.prepareEdit}" value="#{bundle.ListTotalOfStudyMeetingEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{totalOfStudyMeetingController.destroy}" value="#{bundle.ListTotalOfStudyMeetingDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{totalOfStudyMeetingController.prepareCreate}" value="#{bundle.ListTotalOfStudyMeetingCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTotalOfStudyMeetingIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

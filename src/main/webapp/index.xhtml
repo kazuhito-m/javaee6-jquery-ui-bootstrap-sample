@@ -1,14 +1,36 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title> JavaEE6 + JSF + JQuery UI Bootstrap + Tomcat Sample - index page</title>
-    </h:head>
-    <h:body>
-        <h1>Welcome ! JavaEE6 + JSF + JQuery UI Bootstrap + Tomcat Sample - index page</h1>
-        <li><h2><a href="./jsfSample.xhtml">JSF (and ManagedBeen) Sample</a></h2></li>
-        <li><h2><a href="./jquery-ui-bootstrap-index.xhtml">jQuery UI Bootstrap Sample</a></h2></li>
-        <li><h2><a href="./summaryStudyMeeting.xhtml">EJB Sample</a></h2></li>
-    </h:body>
-</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <!-- Subhead
+        ================================================== -->
+        <header class="jumbotron subhead" id="overview">
+            <div class="container">
+                <h1>Modan Web Application sample</h1>
+                <p class="lead">Welcome ! JavaEE6 + JSF + JQuery UI Bootstrap + Tomcat Sample - index page.</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Menu -->
+            <section id="block-menu"  align="center">
+                <div class="page-header">
+                    <h1>Menu</h1>
+                </div>
+                <div class="clearfix">
+                    <ul id="menu">
+                        <li><a href="./xhtml/jsfSample.xhtml">JSF (and ManagedBeen) Sample</a></li>
+                        <li><a href="./jquery-ui-bootstrap-index.xhtml">jQuery UI Bootstrap Sample</a></li>
+                        <li><a href="./xhtml/summaryStudyMeeting/">EJB Sample</a></li>
+                        <li><a href="./xhtml">Create default page by NetBeans</a></li>
+                    </ul>
+                </div>
+            </section>
+            <!--end Menu-->
+        </div>
+
+    </ui:define>
+</ui:composition>

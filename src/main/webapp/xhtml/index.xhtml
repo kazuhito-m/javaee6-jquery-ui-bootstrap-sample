@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <div class="container">
+            Hello from Facelets
+            <br />
+            <!-- Docs nav ================================================== -->
+            <div class="row">
+                <div class="span3 bs-docs-sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav">
+                        <h:link outcome="/xhtml/studyMeeting/List" value="Show All StudyMeeting Items"/>
+                        <br />
+                        <h:link outcome="/xhtml/totalOfStudyMeeting/List" value="Show All TotalOfStudyMeeting Items"/>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
